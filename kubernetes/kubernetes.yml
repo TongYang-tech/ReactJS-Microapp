@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: placeholder-application
+  name: react-ma
   namespace: default
 spec:
   selector:
     matchLabels:
-      app: placeholder-application
+      app: react-ma
   template:
     metadata:
       labels:
-        app: placeholder-application
+        app: react-ma
     spec:
       containers:
-        - name: placeholder-application
-          image: placeholder-application:latest
+        - name: react-ma
+          image: react-ma:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
@@ -48,11 +48,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: placeholder-application
+  name: react-ma
   namespace: default
 spec:
   selector:
-    app: placeholder-application
+    app: react-ma
   ports:
     - name: http
       port: 8080
@@ -64,13 +64,13 @@ spec:
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: placeholder-application
+  name: react-ma
   namespace: default
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: placeholder-application
+    name: react-ma
   minReplicas: 3
   maxReplicas: 9
   targetCPUUtilizationPercentage: 70
